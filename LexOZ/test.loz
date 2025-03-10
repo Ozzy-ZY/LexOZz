@@ -1,0 +1,45 @@
+// This is a sample LexOZ language file
+
+function factorial(n) {
+    if (n == 0) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+function main() {
+    // Calculate factorial of 5
+    var result = factorial(5);
+    
+    // Print the result
+    while (result > 0) {
+        result = result - 1;
+    }
+    
+    // Test string literals
+    var message = "Hello, LexOZ!";
+    
+    // Test comparison operators
+    if (10 != 5) {
+        var x = 10;
+        var y = 5;
+        
+        if (x > y) {
+            // This is true
+        }
+        
+        if (y < x) {
+            // This is also true
+        }
+    }
+    
+    // Test function with multiple parameters
+    var sum = add(10, 20, 30);
+    
+    return 0;
+}
+
+function add(a, b, c) {
+    return a + b + c;
+}
