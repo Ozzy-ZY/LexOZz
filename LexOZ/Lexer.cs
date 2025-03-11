@@ -37,6 +37,7 @@ public class Lexer
         }
     }
     
+
     private char PeekChar() =>
         _readPosition >= _input.Length ? '\0' : _input[_readPosition];
     
@@ -141,7 +142,7 @@ public class Lexer
                     token = new Token(TokenType.DIVIDE, _ch.ToString(), _line, _column);
                 }
                 break;
-            case '!':
+            case '!':                
                 if (PeekChar() == '=')
                 {
                     var ch = _ch;
@@ -150,7 +151,7 @@ public class Lexer
                 }
                 else
                 {
-                    token = new Token(TokenType.ILLEGAL, _ch.ToString(), _line, _column);
+                    token = new Token(TokenType.NOT, _ch.ToString(), _line, _column);
                 }
                 break;
             case '<':
@@ -176,6 +177,30 @@ public class Lexer
                 break;
             case ',':
                 token = new Token(TokenType.COMMA, _ch.ToString(), _line, _column);
+                break;
+            case '&':
+                if (PeekChar() == '&')
+                {
+                    var ch = _ch;
+                    ReadChar();
+                    token = new Token(TokenType.AND, $"{ch}{_ch}", _line, _column);
+                }
+                else
+                {
+                    token = new Token(TokenType.ILLEGAL, _ch.ToString(), _line, _column);
+                }
+                break;
+            case '|':
+                if (PeekChar() == '|')
+                {
+                    var ch = _ch;
+                    ReadChar();
+                    token = new Token(TokenType.OR, $"{ch}{_ch}", _line, _column);
+                }
+                else
+                {
+                    token = new Token(TokenType.ILLEGAL, _ch.ToString(), _line, _column);
+                }
                 break;
             case '"':
                 var stringLiteral = ReadString();
@@ -214,6 +239,8 @@ public class Lexer
         "function" => TokenType.FUNCTION,
         "return" => TokenType.RETURN,
         "var" => TokenType.VAR,
+        "true" => TokenType.TRUE,
+        "false" => TokenType.FALSE,
         _ => TokenType.IDENTIFIER
     };
 }
