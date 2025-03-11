@@ -16,7 +16,7 @@ LexOZ is a lexical analyzer (lexer) for a simple programming language. It transf
 You can use the LexOZ lexer from the command line to tokenize a source file:
 
 ```bash
-LexOZ.exe path/to/your/file.loz
+dotnet run --project LexOz path/to/file.loz
 ```
 
 This will output all tokens found in the file along with their positions.
